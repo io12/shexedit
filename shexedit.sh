@@ -5,6 +5,7 @@ if [ -z "$EDITOR" ]; then
 	printf "Defaulting to vi\n"
 	printf "Press ENTER to continue\n"
 	read
+	EDITOR="vi"
 fi
 
 if ! hash xxd 2> /dev/null; then
@@ -26,4 +27,5 @@ xxd "$1" > "$tmphex"
 xxd -r "$tmphex" > "$1"
 
 rm -f "$tmphex" > /dev/null
+
 exit

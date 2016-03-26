@@ -1,9 +1,11 @@
 .PONEY = all install clean
 
-all: shexedit.sh
+shexedit: shexedit.sh
 	cp shexedit.sh shexedit
 
-install: all
+all: shexedit
+
+install: shexedit
 	cp shexedit /usr/local/bin/shexedit
 
 clean:
