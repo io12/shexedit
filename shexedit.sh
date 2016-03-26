@@ -8,12 +8,12 @@ if [ -z "$EDITOR" ]; then
 fi
 
 if ! hash xxd 2> /dev/null; then
-	printf "Command xxd not found. Please install xxd."
+	printf "Command xxd not found. Please install xxd.\n"
 	exit 1
 fi
 
 if [ -z "$1" ]; then
-	printf "Usage: $0 [file]"
+	printf "Usage: $0 [file]\n"
 	exit 1
 fi
 
