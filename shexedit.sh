@@ -9,7 +9,7 @@ if [ -z "$EDITOR" ]; then
 fi
 
 if ! hash xxd 2> /dev/null; then
-	printf "Command xxd not found. Please install xxd.\n"
+	printf "xxd not installed. Please install xxd.\n"
 	exit 1
 fi
 
@@ -18,7 +18,7 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
-tmphex="/tmp/$1.hex"
+tmphex="/tmp/$1.shex"
 
 xxd "$1" > "$tmphex"
 
