@@ -22,7 +22,11 @@ tmphex="/tmp/$1.shex"
 
 xxd "$1" > "$tmphex"
 
-"$EDITOR" "$tmphex"
+if [ "$EDITOR" = "vim" ] || [ "$EDITOR" = "nvim" ]; then
+	"$EDITOR" -c "set ft=xxd" "$tmphex"
+else
+	"$EDITOR" "$tmphex"
+fi
 
 xxd -r "$tmphex" > "$1"
 
