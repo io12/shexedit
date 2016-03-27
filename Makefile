@@ -1,4 +1,4 @@
-.PONEY = all install clean
+.PHONY = all install clean
 
 shexedit: shexedit.sh
 	cp shexedit.sh shexedit
