@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+	printf "Usage: $0 [file]\n"
+	exit 1
+fi
+
+if ! hash xxd 2> /dev/null; then
+	printf "xxd not installed\n"
+	exit 1
+fi
+
 if [ -z "$EDITOR" ]; then
 	printf "Set the \$EDITOR environment variable to change your editor\n"
 	printf "Defaulting to vi\n"
@@ -8,21 +18,11 @@ if [ -z "$EDITOR" ]; then
 	EDITOR="vi"
 fi
 
-if ! hash xxd 2> /dev/null; then
-	printf "xxd not installed. Please install xxd.\n"
-	exit 1
-fi
-
-if [ -z "$1" ]; then
-	printf "Usage: $0 [file]\n"
-	exit 1
-fi
-
 tmphex="/tmp/$1.shex"
 
 xxd "$1" > "$tmphex"
 
-if [ "$EDITOR" = "vim" ] || [ "$EDITOR" = "nvim" ]; then
+if echo "$EDITOR" | grep -q "vim"; then
 	"$EDITOR" -c "set ft=xxd" "$tmphex"
 else
 	"$EDITOR" "$tmphex"
