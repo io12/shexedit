@@ -1,12 +1,15 @@
+BUILD = shexedit
+SCRIPT = $(BUILD).sh
+
 .PHONY = all install clean
 
-shexedit: shexedit.sh
-	cp shexedit.sh shexedit
+$(BUILD): $(SCRIPT)
+	cp $(SCRIPT) $(BUILD)
 
-all: shexedit
+all: $(BUILD)
 
-install: shexedit
-	cp shexedit /usr/local/bin/shexedit
+install: $(BUILD)
+	cp $(BUILD) /usr/local/bin/$(BUILD)
 
 clean:
-	rm -f shexedit
+	rm -f $(BUILD)
